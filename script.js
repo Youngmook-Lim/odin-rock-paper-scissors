@@ -64,11 +64,11 @@ buttons.addEventListener("click", function (e) {
   result.textContent = `${roundResult}`;
   if (playerScore === 5) {
     result.textContent = `Player Wins!`;
-    result.classList.add("win");
+    result.classList.add("win-you");
     playing = false;
   } else if (computerScore === 5) {
     result.textContent = `Computer Wins!`;
-    result.classList.add("win");
+    result.classList.add("win-comp");
     playing = false;
   }
   console.log(playerScore, computerScore);

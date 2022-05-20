@@ -105,7 +105,12 @@ main {
   padding: 1.2rem 2.4rem;
 }
 
-.win {
+.win-you {
+  color: #333;
+  background-color: #ffc600;
+}
+
+.win-comp {
   color: #ccc;
   background-color: #444;
 }
