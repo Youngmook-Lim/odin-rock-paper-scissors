@@ -4,6 +4,12 @@ let playerSelection;
 let computerSelection;
 let playerScore = 0;
 let computerScore = 0;
+let playing = true;
+const buttonRock = document.querySelector(".rock");
+const buttonPaper = document.querySelector(".paper");
+const buttonScissors = document.querySelector(".scissors");
+const buttons = document.querySelector(".btns");
+const result = document.querySelector(".result");
 
 const computerPlay = function () {
   const result = Math.floor(Math.random() * 3) + 1;
@@ -12,8 +18,8 @@ const computerPlay = function () {
   if (result === 3) return "scissors";
 };
 
-const select = function () {
-  playerSelection = prompt("Enter rock paper or scissors!");
+const select = function (output) {
+  playerSelection = output;
   computerSelection = computerPlay();
 };
 
@@ -42,12 +48,20 @@ const playRound = function (playerSelection, computerSelection) {
   }
 };
 
-const game = function () {
-  for (let i = 0; i < 5; i++) {
-    select();
-    console.log(playRound(playerSelection, computerSelection));
+buttons.addEventListener("click", function (e) {
+  if (!playing) return;
+  const btn = e.target.closest(".btn");
+  if (!btn) return;
+  const output = btn.dataset.output;
+  select(output);
+  const roundResult = playRound(playerSelection, computerSelection);
+  result.textContent = `${roundResult}`;
+  if (playerScore === 5) {
+    result.textContent = `Player Wins!`;
+    playing = false;
+  } else if (computerScore === 5) {
+    result.textContent = `Computer Wins!`;
+    playing = false;
   }
   console.log(playerScore, computerScore);
-};
-
-game();
+});
