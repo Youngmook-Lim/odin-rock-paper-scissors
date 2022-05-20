@@ -56,6 +56,8 @@ buttons.addEventListener("click", function (e) {
   if (!playing) return;
   const btn = e.target.closest(".btn");
   if (!btn) return;
+  btn.classList.add("pressed");
+  setTimeout(() => btn.classList.remove("pressed"), 100);
   const output = btn.dataset.output;
   select(output);
   const roundResult = playRound(playerSelection, computerSelection);
