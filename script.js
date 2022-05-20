@@ -10,6 +10,8 @@ const buttonPaper = document.querySelector(".paper");
 const buttonScissors = document.querySelector(".scissors");
 const buttons = document.querySelector(".btns");
 const result = document.querySelector(".result");
+const scoreYou = document.querySelector(".score-you");
+const scoreComp = document.querySelector(".score-comp");
 
 const computerPlay = function () {
   const result = Math.floor(Math.random() * 3) + 1;
@@ -35,6 +37,7 @@ const playRound = function (playerSelection, computerSelection) {
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     playerScore++;
+    scoreYou.textContent = `${playerScore}`;
     return `You Win! ${playerSelection[0].toUpperCase()}${playerSelection.slice(
       1
     )} beats ${computerSelection[0].toUpperCase()}${computerSelection.slice(
@@ -42,6 +45,7 @@ const playRound = function (playerSelection, computerSelection) {
     )}!`;
   } else {
     computerScore++;
+    scoreComp.textContent = `${computerScore}`;
     return `You Lose! ${computerSelection[0].toUpperCase()}${computerSelection.slice(
       1
     )} beats ${playerSelection[0].toUpperCase()}${playerSelection.slice(1)}!`;
@@ -58,9 +62,11 @@ buttons.addEventListener("click", function (e) {
   result.textContent = `${roundResult}`;
   if (playerScore === 5) {
     result.textContent = `Player Wins!`;
+    result.classList.add("win");
     playing = false;
   } else if (computerScore === 5) {
     result.textContent = `Computer Wins!`;
+    result.classList.add("win");
     playing = false;
   }
   console.log(playerScore, computerScore);
